@@ -7,3 +7,27 @@ export {
   RK3326_SUPPLIER_PART_NUMBERS,
   type RK3326Props,
 } from "./src/RK3326"
+
+export {
+  RK3326Breakout,
+  RK3326_BREAKOUT_GEOMETRY,
+  RK3326_BREAKOUT_RULES,
+  RK3326_DEFAULT_SIGNAL_FANOUT_LAYERS,
+  RK3326_FANOUT_BUSES,
+  RK3326_FANOUT_BUS_IDS,
+  RK3326_GROUND_PLANE_LAYER,
+  RK3326_INITIAL_FANOUT_BUS_IDS,
+  RK3326_PLANE_FANOUT_CONNECTIONS,
+  RK3326_POWER_PLANE_LAYER,
+  RK3326_SUPPLY_PINS,
+  getRK3326FanoutBreakoutPoints,
+  getRK3326PlaneFanoutConnections,
+  type RK3326BreakoutProps,
+  type RK3326FanoutDirection,
+  type RK3326FanoutBreakoutPoint,
+  type RK3326FanoutBus,
+  type RK3326FanoutBusId,
+  type RK3326FanoutSide,
+  type RK3326PlaneFanoutConnection,
+  type RK3326SignalFanoutLayer,
+} from "./src/RK3326Breakout"
