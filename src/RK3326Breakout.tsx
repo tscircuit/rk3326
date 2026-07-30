@@ -211,7 +211,6 @@ export interface RK3326PlaneFanoutConnection {
   pinFunction: string
   netName: string
   traceName: string
-  busName: string
   layer: typeof RK3326_GROUND_PLANE_LAYER | typeof RK3326_POWER_PLANE_LAYER
   direction: RK3326FanoutDirection
 }
@@ -435,6 +434,14 @@ export const RK3326_SUPPLY_PINS = RK3326_BALLS.flatMap((ball) => {
   return supplyPin ? [supplyPin] : []
 })
 
+export const RK3326_POWER_RAIL_NETS = Array.from(
+  new Set(
+    RK3326_SUPPLY_PINS.filter(({ category }) => category === "power").map(
+      ({ netName }) => netName,
+    ),
+  ),
+)
+
 export const getRK3326PlaneFanoutConnections = (
   selectedSignalBusIds: readonly RK3326FanoutBusId[] = RK3326_INITIAL_FANOUT_BUS_IDS,
 ): readonly RK3326PlaneFanoutConnection[] => {
@@ -449,7 +456,6 @@ export const getRK3326PlaneFanoutConnections = (
     pinFunction,
     netName,
     traceName: `PLANE_TRACE_${ball}`,
-    busName: `plane-${category}-${ball}`,
     layer:
       category === "ground"
         ? RK3326_GROUND_PLANE_LAYER
@@ -509,7 +515,10 @@ export const RK3326Breakout = ({
     ),
     ...planeFanoutConnections.map(
       (connection) =>
-        [connection.busName, directionToAnchor[connection.direction]] as const,
+        [
+          connection.traceName,
+          directionToAnchor[connection.direction],
+        ] as const,
     ),
   ])
   const { sizeMm, paddingMm } = RK3326_BREAKOUT_GEOMETRY
@@ -538,24 +547,19 @@ export const RK3326Breakout = ({
         autorouter="fanout"
         busFanoutDirections={busFanoutDirections}
         fanoutRoutingLayers={[...signalFanoutLayers]}
+        fanoutPourNetMap={{
+          [RK3326_GROUND_PLANE_LAYER]: "GND",
+          [RK3326_POWER_PLANE_LAYER]: RK3326_POWER_RAIL_NETS,
+        }}
       />
       <RK3326 name={chipName} pcbX={0} pcbY={0} />
       {planeFanoutConnections.map((connection) => (
-        <Fragment key={connection.busName}>
-          <trace
-            name={connection.traceName}
-            from={`.${chipName} > .${connection.ball}`}
-            to={`net.${connection.netName}`}
-          />
-          <bus
-            name={connection.busName}
-            connections={[connection.traceName]}
-            fanoutTermination={{
-              type: "plane",
-              layer: connection.layer,
-            }}
-          />
-        </Fragment>
+        <trace
+          key={connection.traceName}
+          name={connection.traceName}
+          from={`.${chipName} > .${connection.ball}`}
+          to={`net.${connection.netName}`}
+        />
       ))}
       {breakoutPoints.map(
         ({ ball, busId, endpointName, netName, traceName, pcbX, pcbY }) => (

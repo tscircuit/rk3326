@@ -13,6 +13,7 @@ import {
   RK3326_FANOUT_BUS_IDS,
   RK3326_GROUND_PLANE_LAYER,
   RK3326_INITIAL_FANOUT_BUS_IDS,
+  RK3326_POWER_RAIL_NETS,
   RK3326_POWER_PLANE_LAYER,
   RK3326_SUPPLY_PINS,
 } from "../src/RK3326Breakout"
@@ -114,9 +115,6 @@ describe("RK3326 initial fanout", () => {
     expect(
       new Set(planeConnections.map(({ traceName }) => traceName)).size,
     ).toBe(205)
-    expect(new Set(planeConnections.map(({ busName }) => busName)).size).toBe(
-      205,
-    )
 
     expect(groundConnections).toHaveLength(154)
     expect(
@@ -141,6 +139,10 @@ describe("RK3326 initial fanout", () => {
     ).toHaveLength(13)
     expect(new Set(powerConnections.map(({ netName }) => netName)).size).toBe(
       23,
+    )
+    expect(RK3326_POWER_RAIL_NETS).toHaveLength(23)
+    expect(new Set(RK3326_POWER_RAIL_NETS)).toEqual(
+      new Set(powerConnections.map(({ netName }) => netName)),
     )
   })
 
