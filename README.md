@@ -39,6 +39,56 @@ Every populated ball is available as a selector such as `.U1 > .A1` or
 `.U1 > .AA21`. The full Rev 1.4 pin-function table is included, so functional
 selectors such as `.U1 > .USB_OTG_DP` and `.U1 > .GPIO0_A0` also work.
 
+### Initial bus fanout
+
+`RK3326Breakout` places the chip inside tscircuit's native `<breakout>`. Named
+`<bus>` groups route signals to 122 stable boundary handoff pads:
+
+- DDR data/masks/strobes on the left
+- DDR command/address/clock on the top
+- eMMC, SDMMC0, SDMMC1, and USB OTG on the right
+- MIPI DSI/LVDS transmit on the top
+- MIPI CSI receive on the right
+
+The default build starts with 25 representative eMMC, USB OTG, and MIPI DSI
+signals. SDMMC0/1, MIPI CSI, DDR data, and DDR command/address are mapped as
+opt-in follow-on groups so the fanout can be validated in deterministic stages.
+
+All 205 supply balls are included in every stage:
+
+- 154 ground balls terminate on `inner1`
+- 51 power balls terminate on `inner2`
+- replicated CPU, logic, and DDR supply pins share their named rail
+- unrelated I/O, PLL, MIPI, USB, ADC, OTP, and PMU rails remain electrically
+  distinct
+
+The power rails share a routing layer, not a net. A downstream board design must
+create the appropriate isolated copper regions for the 23 named power nets on
+`inner2`.
+
+```tsx
+import { RK3326Breakout } from "@tsci/tscircuit.rk3326"
+
+export default () => (
+  <board width="40mm" height="40mm" layers={6}>
+    <RK3326Breakout name="RK3326_FANOUT" chipName="U1" />
+  </board>
+)
+```
+
+The exported `RK3326_FANOUT_BUSES` metadata can be used to build connectors or
+downstream routing one interface at a time. Pass a subset with
+`buses={["emmc", "usb-otg"]}` when iterating on a smaller escape problem, or
+add `"ddr-data"` and `"ddr-command-address"` for the DDR stage.
+
+The fanout phase reserves `inner1` and `inner2` for the supply planes. Signal
+escapes default to `top`, `inner3`, `inner4`, and `bottom`; a deeper stack can
+override those with `signalFanoutLayers`.
+
+The included 0.09 mm traces and 0.25/0.10 mm via pad/hole are preliminary HDI
+constraints for the 0.65 mm-pitch BGA. Confirm the microvia stack and
+fabrication tolerances with the board manufacturer before production.
+
 `RK3326_SUPPLIER_PART_NUMBERS` exports the known LCSC catalog reference
 separately. It is not attached to the component by default because the
 tscircuit/JLCPCB importer does not currently return a usable footprint for
