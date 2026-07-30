@@ -66,6 +66,23 @@ The power rails share a routing layer, not a net. A downstream board design must
 create the appropriate isolated copper regions for the 23 named power nets on
 `inner2`.
 
+The breakout declares that plane intent once through the fanout phase:
+
+```tsx
+<autoroutingphase
+  autorouter="fanout"
+  fanoutPourNetMap={{
+    inner1: "GND",
+    inner2: RK3326_POWER_RAIL_NETS,
+  }}
+/>
+```
+
+There is no singleton bus per supply ball. The fanout router recognizes each
+source-only supply trace from its net and drops it to the mapped layer. In a
+board design with matching `<copperpour>` components, the same layer-to-net
+intent can be inferred without specifying `fanoutPourNetMap`.
+
 ```tsx
 import { RK3326Breakout } from "@tsci/tscircuit.rk3326"
 
