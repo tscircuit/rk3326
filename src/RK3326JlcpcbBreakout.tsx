@@ -122,7 +122,14 @@ const dsiGroundPins = [
   "pin13",
   "pin16",
 ] as const
-const directRkPlaneDropBalls = new Set(["A21", "J18", "L11", "W11", "W13"])
+const directRkPlaneDropBalls = new Set([
+  "A21",
+  "AA21",
+  "J18",
+  "L11",
+  "W11",
+  "W13",
+])
 
 const directionToAnchor = {
   left: "center_left",
@@ -193,7 +200,6 @@ export const RK3326JlcpcbBreakout = ({
               directionToAnchor[connection.direction],
             ] as const,
         ),
-      ["USB_GND", "center_right"],
     ])
   const { widthMm, heightMm, paddingMm } = RK3326_JLCPCB_BREAKOUT_GEOMETRY
 
@@ -242,14 +248,14 @@ export const RK3326JlcpcbBreakout = ({
         noSchematicRepresentation
         includeSupplyMicrovias
         includeSignalMicrovias
-        pcbX={15}
+        pcbX={17}
         pcbY={-4}
       />
       <A_10118194_0001LF
         name={usbName}
         noSchematicRepresentation
-        pcbX={18}
-        pcbY={-15.5}
+        pcbX={0}
+        pcbY={-20}
         pcbRotation={90}
       />
       <KH_FG0_5_H2_0_20PIN
@@ -257,6 +263,7 @@ export const RK3326JlcpcbBreakout = ({
         noSchematicRepresentation
         pcbX={0}
         pcbY={15.5}
+        pcbRotation={180}
       />
       {planeFanoutConnections.map((connection) => (
         <trace
@@ -327,7 +334,16 @@ export const RK3326JlcpcbBreakout = ({
         name="USB_GND"
         from={`.${usbName} > .GND`}
         to="net.GND"
-        routingPhaseIndex={4}
+        pcbPathRelativeTo={`.${usbName} > .GND`}
+        pcbPath={[
+          {
+            x: 0,
+            y: 0,
+            via: true,
+            fromLayer: "top",
+            toLayer: RK3326_GROUND_PLANE_LAYER,
+          },
+        ]}
       />
       {dsiGroundPins.map((pin) => (
         <trace
