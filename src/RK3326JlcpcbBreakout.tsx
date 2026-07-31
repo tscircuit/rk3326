@@ -297,7 +297,6 @@ export const RK3326JlcpcbBreakout = ({
               name={traceName}
               from={`.${chipName} > .${connection.rkBall}`}
               to={`.${targetNames[bus.target]} > .${connection.targetPin}`}
-              routingPhaseIndex={bus.phaseIndex}
             />
           )
         }),
