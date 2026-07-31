@@ -32,3 +32,10 @@ export {
   type RK3326PlaneFanoutConnection,
   type RK3326SignalFanoutLayer,
 } from "./src/RK3326Breakout"
+
+export {
+  RK3326JlcpcbBreakout,
+  RK3326_JLCPCB_BREAKOUT_GEOMETRY,
+  RK3326_JLCPCB_PARTS,
+  type RK3326JlcpcbBreakoutProps,
+} from "./src/RK3326JlcpcbBreakout"

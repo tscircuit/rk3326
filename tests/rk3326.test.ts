@@ -17,6 +17,11 @@ import {
   RK3326_POWER_PLANE_LAYER,
   RK3326_SUPPLY_PINS,
 } from "../src/RK3326Breakout"
+import {
+  RK3326_JLCPCB_BREAKOUT_GEOMETRY,
+  RK3326_JLCPCB_PARTS,
+} from "../src/RK3326JlcpcbBreakout"
+import { getKLM8G1GETF_B041BallPosition } from "../imports/KLM8G1GETF_B041"
 
 describe("RK3326 package", () => {
   test("contains the complete 418-ball population", () => {
@@ -159,5 +164,40 @@ describe("RK3326 initial fanout", () => {
     expect(RK3326_DEFAULT_SIGNAL_FANOUT_LAYERS).not.toContain(
       RK3326_POWER_PLANE_LAYER,
     )
+  })
+})
+
+describe("RK3326 concrete JLCPCB breakout", () => {
+  test("uses the selected catalog parts", () => {
+    expect(RK3326_JLCPCB_PARTS).toEqual({
+      emmc: {
+        manufacturerPartNumber: "KLM8G1GETF-B041",
+        lcscPartNumber: "C499918",
+      },
+      usbOtg: {
+        manufacturerPartNumber: "10118194-0001LF",
+        lcscPartNumber: "C132563",
+      },
+      mipiDsi: {
+        manufacturerPartNumber: "KH-FG0.5-H2.0-20PIN",
+        lcscPartNumber: "C2797211",
+      },
+    })
+    expect(RK3326_JLCPCB_BREAKOUT_GEOMETRY).toEqual({
+      widthMm: 50,
+      heightMm: 44,
+      paddingMm: 2,
+    })
+  })
+
+  test("matches the imported eMMC BGA grid", () => {
+    expect(getKLM8G1GETF_B041BallPosition("A1")).toEqual({
+      x: -3.250057,
+      y: 3.250057,
+    })
+    expect(getKLM8G1GETF_B041BallPosition("P14")).toEqual({
+      x: 3.250057,
+      y: -3.250057,
+    })
   })
 })
