@@ -106,6 +106,38 @@ The included 0.09 mm traces and 0.25/0.10 mm via pad/hole are preliminary HDI
 constraints for the 0.65 mm-pitch BGA. Confirm the microvia stack and
 fabrication tolerances with the board manufacturer before production.
 
+### Concrete JLCPCB breakout
+
+`RK3326JlcpcbBreakout` replaces the generic boundary handoff pads for the
+initial buses with exact JLCPCB-imported parts:
+
+| Interface | Part                                   | LCSC     |
+| --------- | -------------------------------------- | -------- |
+| eMMC 5.1  | Samsung KLM8G1GETF-B041, 8 GB BGA153   | C499918  |
+| USB OTG   | Amphenol 10118194-0001LF Micro-USB B   | C132563  |
+| MIPI DSI  | KH-FG0.5-H2.0-20PIN, 20-pin 0.5 mm FPC | C2797211 |
+
+```tsx
+import { RK3326JlcpcbBreakout } from "@tsci/tscircuit.rk3326"
+
+export default () => (
+  <board width="56mm" height="50mm" layers={6}>
+    <RK3326JlcpcbBreakout name="RK3326_FANOUT" chipName="U1" />
+  </board>
+)
+```
+
+The routed interfaces are the eight eMMC data signals plus CLK, CMD, and RSTN;
+USB OTG VBUS, ID, D+, and D-; and four MIPI DSI data lanes plus its clock lane.
+The eMMC signal balls use via-in-pad microvias to `inner3` and `inner4`. Its
+VSS balls drop to `inner1`, while VCC and VCCQ drop to `inner2`. The connector
+ground pins and RK3326 supply balls use the same declared plane destinations.
+
+The imported footprints are exact catalog geometry rather than fabrication
+approval. The 0.10/0.25 mm microvia hole/pad pair and via-in-pad construction
+require an HDI stackup and should be confirmed with the fabricator before
+production.
+
 `RK3326_SUPPLIER_PART_NUMBERS` exports the known LCSC catalog reference
 separately. It is not attached to the component by default because the
 tscircuit/JLCPCB importer does not currently return a usable footprint for
