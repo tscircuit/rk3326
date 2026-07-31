@@ -3,7 +3,7 @@ import { Fragment } from "react"
 import { A_10118194_0001LF } from "../imports/A_10118194_0001LF"
 import { KH_FG0_5_H2_0_20PIN } from "../imports/KH_FG0_5_H2_0_20PIN"
 import { KLM8G1GETF_B041 } from "../imports/KLM8G1GETF_B041"
-import { RK3326 } from "./RK3326"
+import { RK3326, RK3326_PACKAGE } from "./RK3326"
 import {
   getRK3326PlaneFanoutConnections,
   RK3326_BREAKOUT_RULES,
@@ -16,10 +16,19 @@ import {
   type RK3326SignalFanoutLayer,
 } from "./RK3326Breakout"
 
+const rk3326PadFieldSizeMm =
+  (RK3326_PACKAGE.rowNames.length - 1) * RK3326_PACKAGE.pitchMm +
+  RK3326_PACKAGE.padDiameterMm
+const rk3326FanoutBoundaryPaddingMm = 1
+const rk3326JlcpcbFanoutPhaseIndex = 0
+
 export const RK3326_JLCPCB_BREAKOUT_GEOMETRY = {
   widthMm: 50,
   heightMm: 44,
   paddingMm: 2,
+  fanoutBoundaryPaddingMm: rk3326FanoutBoundaryPaddingMm,
+  fanoutBoundarySizeMm:
+    rk3326PadFieldSizeMm + 2 * rk3326FanoutBoundaryPaddingMm,
 } as const
 
 export const RK3326_JLCPCB_PARTS = {
@@ -40,7 +49,7 @@ export const RK3326_JLCPCB_PARTS = {
 const signalBuses = [
   {
     id: "emmc-data",
-    phaseIndex: 2,
+    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "center_right",
     target: "emmc",
     connections: [
@@ -56,9 +65,8 @@ const signalBuses = [
   },
   {
     id: "emmc-control",
-    phaseIndex: 3,
+    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "center_right",
-    fanoutLayers: ["bottom", "inner4"],
     target: "emmc",
     connections: [
       { rkBall: "H18", targetPin: "CLK", signal: "CLK" },
@@ -68,7 +76,7 @@ const signalBuses = [
   },
   {
     id: "usb-otg",
-    phaseIndex: 1,
+    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "center_right",
     target: "usb",
     connections: [
@@ -80,7 +88,7 @@ const signalBuses = [
   },
   {
     id: "mipi-dsi",
-    phaseIndex: 0,
+    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "top_center",
     target: "dsi",
     connections: [
@@ -189,8 +197,9 @@ export const RK3326JlcpcbBreakout = ({
     usb: usbName,
     dsi: dsiName,
   } as const
-  const planeFanoutDirections: Record<string, BusFanoutDirection> =
+  const fanoutDirections: Record<string, BusFanoutDirection> =
     Object.fromEntries([
+      ...signalBuses.map((bus) => [bus.id, bus.direction] as const),
       ...planeFanoutConnections
         .filter((connection) => !directRkPlaneDropBalls.has(connection.ball))
         .map(
@@ -201,7 +210,13 @@ export const RK3326JlcpcbBreakout = ({
             ] as const,
         ),
     ])
-  const { widthMm, heightMm, paddingMm } = RK3326_JLCPCB_BREAKOUT_GEOMETRY
+  const {
+    widthMm,
+    heightMm,
+    paddingMm,
+    fanoutBoundaryPaddingMm,
+    fanoutBoundarySizeMm,
+  } = RK3326_JLCPCB_BREAKOUT_GEOMETRY
 
   return (
     <breakout
@@ -210,13 +225,14 @@ export const RK3326JlcpcbBreakout = ({
       width={widthMm}
       height={heightMm}
       padding={paddingMm}
+      fanoutBoundaryPadding={fanoutBoundaryPaddingMm}
       autorouter="default"
       {...RK3326_BREAKOUT_RULES}
     >
       <autoroutingphase
-        phaseIndex={4}
+        phaseIndex={rk3326JlcpcbFanoutPhaseIndex}
         autorouter="fanout"
-        busFanoutDirections={planeFanoutDirections}
+        busFanoutDirections={fanoutDirections}
         fanoutRoutingLayers={[...signalFanoutLayers]}
         fanoutPourNetMap={{
           [RK3326_GROUND_PLANE_LAYER]: "GND",
@@ -227,20 +243,14 @@ export const RK3326JlcpcbBreakout = ({
           ],
         }}
       />
-      {signalBuses.map((bus) => (
-        <Fragment key={`phase-${bus.id}`}>
-          <autoroutingphase
-            phaseIndex={bus.phaseIndex}
-            autorouter="fanout"
-            busFanoutDirections={{ [bus.id]: bus.direction }}
-            fanoutRoutingLayers={[
-              ...("fanoutLayers" in bus
-                ? bus.fanoutLayers
-                : signalFanoutLayers),
-            ]}
-          />
-        </Fragment>
-      ))}
+
+      <pcbnoterect
+        width={fanoutBoundarySizeMm}
+        height={fanoutBoundarySizeMm}
+        strokeWidth={0.25}
+        isStrokeDashed
+        color="#f97316"
+      />
 
       <RK3326 name={chipName} pcbX={0} pcbY={0} />
       <KLM8G1GETF_B041
@@ -256,7 +266,7 @@ export const RK3326JlcpcbBreakout = ({
         noSchematicRepresentation
         pcbX={0}
         pcbY={-20}
-        pcbRotation={90}
+        pcbRotation={0}
       />
       <KH_FG0_5_H2_0_20PIN
         name={dsiName}
@@ -284,7 +294,7 @@ export const RK3326JlcpcbBreakout = ({
                   },
                 ],
               }
-            : { routingPhaseIndex: 4 })}
+            : { routingPhaseIndex: rk3326JlcpcbFanoutPhaseIndex })}
         />
       ))}
 
