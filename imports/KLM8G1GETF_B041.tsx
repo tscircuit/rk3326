@@ -239,6 +239,42 @@ export const KLM8G1GETF_B041 = ({
       manufacturerPartNumber="KLM8G1GETF-B041"
       footprint={
         <footprint>
+          {includeSignalMicrovias &&
+            signalMicrovias.map(({ pin, ball, toLayer }) => {
+              const { x, y } = getKLM8G1GETF_B041BallPosition(ball)
+              const row = ball.match(/^[A-Z]+/)?.[0]
+              const escapeDy = row === "A" || row === "K" ? 0.4 : -0.4
+              return (
+                <Fragment key={`signal-microvia-${ball}`}>
+                  <smtpad
+                    portHints={[pin]}
+                    pcbX={x}
+                    pcbY={y + escapeDy}
+                    width="0.15mm"
+                    height="0.15mm"
+                    shape="rect"
+                    layer={toLayer}
+                  />
+                  <smtpad
+                    portHints={[pin]}
+                    pcbX={x}
+                    pcbY={y + escapeDy / 2}
+                    width="0.15mm"
+                    height="0.55mm"
+                    shape="rect"
+                    layer={toLayer}
+                  />
+                  <via
+                    pcbX={x}
+                    pcbY={y}
+                    outerDiameter="0.25mm"
+                    holeDiameter="0.10mm"
+                    fromLayer="top"
+                    toLayer={toLayer}
+                  />
+                </Fragment>
+              )
+            })}
           <smtpad
             portHints={["pin1"]}
             pcbX="-3.250057mm"
@@ -1468,31 +1504,6 @@ export const KLM8G1GETF_B041 = ({
               const { x, y } = getKLM8G1GETF_B041BallPosition(ball)
               return (
                 <Fragment key={`supply-microvia-${ball}`}>
-                  <via
-                    pcbX={x}
-                    pcbY={y}
-                    outerDiameter="0.25mm"
-                    holeDiameter="0.10mm"
-                    fromLayer="top"
-                    toLayer={toLayer}
-                  />
-                </Fragment>
-              )
-            })}
-          {includeSignalMicrovias &&
-            signalMicrovias.map(({ pin, ball, toLayer }) => {
-              const { x, y } = getKLM8G1GETF_B041BallPosition(ball)
-              return (
-                <Fragment key={`signal-microvia-${ball}`}>
-                  <smtpad
-                    portHints={[pin]}
-                    pcbX={x}
-                    pcbY={y}
-                    width="0.25mm"
-                    height="0.25mm"
-                    shape="rect"
-                    layer={toLayer}
-                  />
                   <via
                     pcbX={x}
                     pcbY={y}

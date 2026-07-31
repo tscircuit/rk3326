@@ -187,6 +187,8 @@ describe("RK3326 concrete JLCPCB breakout", () => {
       widthMm: 50,
       heightMm: 44,
       paddingMm: 2,
+      fanoutBoundaryPaddingMm: 1,
+      fanoutBoundarySizeMm: 15.3,
     })
   })
 
