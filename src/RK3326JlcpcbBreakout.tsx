@@ -371,6 +371,7 @@ export const RK3326JlcpcbBreakout = ({
             connections={bus.connections.map((connection) =>
               getSignalTraceName(bus.id, connection.signal),
             )}
+            routingPhaseIndex={bus.phaseIndex}
           />
         </Fragment>
       ))}
