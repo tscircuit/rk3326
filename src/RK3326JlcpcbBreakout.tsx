@@ -2,10 +2,7 @@ import type { BreakoutProps, BusFanoutDirection } from "@tscircuit/props"
 import { Fragment } from "react"
 import { A_10118194_0001LF } from "../imports/A_10118194_0001LF"
 import { KH_FG0_5_H2_0_20PIN } from "../imports/KH_FG0_5_H2_0_20PIN"
-import {
-  getKLM8G1GETF_B041BallPosition,
-  KLM8G1GETF_B041,
-} from "../imports/KLM8G1GETF_B041"
+import { KLM8G1GETF_B041 } from "../imports/KLM8G1GETF_B041"
 import { RK3326, RK3326_PACKAGE } from "./RK3326"
 import {
   getRK3326PlaneFanoutConnections,
@@ -361,6 +358,10 @@ export const RK3326JlcpcbBreakout = ({
         fanoutBoundaryPadding={peripheralFanoutPaddingMm}
         exposedNets={["GND", "EMMC_VCC", "EMMC_VCCQ"]}
         busFanoutDirections={emmcPeripheralFanoutDirections}
+        fanoutPourNetMap={{
+          [RK3326_GROUND_PLANE_LAYER]: "GND",
+          [RK3326_POWER_PLANE_LAYER]: ["EMMC_VCC", "EMMC_VCCQ"],
+        }}
         {...RK3326_BREAKOUT_RULES}
       >
         <KLM8G1GETF_B041
@@ -369,66 +370,30 @@ export const RK3326JlcpcbBreakout = ({
           pcbX={0}
           pcbY={0}
         />
-        {emmcGroundBalls.map((ball) => {
-          const position = getKLM8G1GETF_B041BallPosition(ball)
-          return (
-            <trace
-              key={`EMMC_GND_${ball}`}
-              name={`EMMC_GND_${ball}`}
-              from={`.${emmcName} > .${ball}`}
-              to="net.GND"
-              pcbPathRelativeTo={`.${emmcName} > .${ball}`}
-              pcbPath={[
-                {
-                  ...position,
-                  via: true,
-                  fromLayer: "top",
-                  toLayer: RK3326_GROUND_PLANE_LAYER,
-                },
-              ]}
-            />
-          )
-        })}
-        {emmcVccBalls.map((ball) => {
-          const position = getKLM8G1GETF_B041BallPosition(ball)
-          return (
-            <trace
-              key={`EMMC_VCC_${ball}`}
-              name={`EMMC_VCC_${ball}`}
-              from={`.${emmcName} > .${ball}`}
-              to="net.EMMC_VCC"
-              pcbPathRelativeTo={`.${emmcName} > .${ball}`}
-              pcbPath={[
-                {
-                  ...position,
-                  via: true,
-                  fromLayer: "top",
-                  toLayer: RK3326_POWER_PLANE_LAYER,
-                },
-              ]}
-            />
-          )
-        })}
-        {emmcVccqBalls.map((ball) => {
-          const position = getKLM8G1GETF_B041BallPosition(ball)
-          return (
-            <trace
-              key={`EMMC_VCCQ_${ball}`}
-              name={`EMMC_VCCQ_${ball}`}
-              from={`.${emmcName} > .${ball}`}
-              to="net.EMMC_VCCQ"
-              pcbPathRelativeTo={`.${emmcName} > .${ball}`}
-              pcbPath={[
-                {
-                  ...position,
-                  via: true,
-                  fromLayer: "top",
-                  toLayer: RK3326_POWER_PLANE_LAYER,
-                },
-              ]}
-            />
-          )
-        })}
+        {emmcGroundBalls.map((ball) => (
+          <trace
+            key={`EMMC_GND_${ball}`}
+            name={`EMMC_GND_${ball}`}
+            from={`.${emmcName} > .${ball}`}
+            to="net.GND"
+          />
+        ))}
+        {emmcVccBalls.map((ball) => (
+          <trace
+            key={`EMMC_VCC_${ball}`}
+            name={`EMMC_VCC_${ball}`}
+            from={`.${emmcName} > .${ball}`}
+            to="net.EMMC_VCC"
+          />
+        ))}
+        {emmcVccqBalls.map((ball) => (
+          <trace
+            key={`EMMC_VCCQ_${ball}`}
+            name={`EMMC_VCCQ_${ball}`}
+            from={`.${emmcName} > .${ball}`}
+            to="net.EMMC_VCCQ"
+          />
+        ))}
       </breakout>
       <breakout
         name={targetBreakoutNames.usb}
@@ -440,6 +405,9 @@ export const RK3326JlcpcbBreakout = ({
         fanoutBoundaryPadding={peripheralFanoutPaddingMm}
         exposedNets={["GND"]}
         busFanoutDirections={usbPeripheralFanoutDirections}
+        fanoutPourNetMap={{
+          [RK3326_GROUND_PLANE_LAYER]: "GND",
+        }}
       >
         <A_10118194_0001LF
           name={usbName}
@@ -452,16 +420,6 @@ export const RK3326JlcpcbBreakout = ({
           name="USB_GND"
           from={`.${usbName} > .GND`}
           to="net.GND"
-          pcbPathRelativeTo={`.${usbName} > .GND`}
-          pcbPath={[
-            {
-              x: 0,
-              y: 0,
-              via: true,
-              fromLayer: "top",
-              toLayer: RK3326_GROUND_PLANE_LAYER,
-            },
-          ]}
         />
       </breakout>
       <breakout
@@ -474,6 +432,9 @@ export const RK3326JlcpcbBreakout = ({
         fanoutBoundaryPadding={peripheralFanoutPaddingMm}
         exposedNets={["GND"]}
         busFanoutDirections={dsiPeripheralFanoutDirections}
+        fanoutPourNetMap={{
+          [RK3326_GROUND_PLANE_LAYER]: "GND",
+        }}
       >
         <KH_FG0_5_H2_0_20PIN
           name={dsiName}
@@ -488,16 +449,6 @@ export const RK3326JlcpcbBreakout = ({
             name={`MIPI_DSI_GND_${pin}`}
             from={`.${dsiName} > .${pin}`}
             to="net.GND"
-            pcbPathRelativeTo={`.${dsiName} > .${pin}`}
-            pcbPath={[
-              {
-                x: 0,
-                y: 0,
-                via: true,
-                fromLayer: "top",
-                toLayer: RK3326_GROUND_PLANE_LAYER,
-              },
-            ]}
           />
         ))}
       </breakout>
