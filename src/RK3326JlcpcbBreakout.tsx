@@ -23,9 +23,12 @@ const rk3326PadFieldSizeMm =
   (RK3326_PACKAGE.rowNames.length - 1) * RK3326_PACKAGE.pitchMm +
   RK3326_PACKAGE.padDiameterMm
 const rk3326FanoutBoundaryPaddingMm = 1
-const rk3326JlcpcbFanoutPhaseIndex = 0
 const peripheralFanoutPaddingMm = 1
 const peripheralBreakoutGeometry = {
+  emmc: {
+    width: 12,
+    height: 12,
+  },
   usb: {
     width: 9.999984,
     height: 6.1500298,
@@ -63,7 +66,6 @@ export const RK3326_JLCPCB_PARTS = {
 const signalBuses = [
   {
     id: "emmc-data",
-    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "center_right",
     target: "emmc",
     connections: [
@@ -79,7 +81,6 @@ const signalBuses = [
   },
   {
     id: "emmc-control",
-    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "center_right",
     target: "emmc",
     connections: [
@@ -90,7 +91,6 @@ const signalBuses = [
   },
   {
     id: "usb-otg",
-    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "center_right",
     target: "usb",
     connections: [
@@ -102,7 +102,6 @@ const signalBuses = [
   },
   {
     id: "mipi-dsi",
-    phaseIndex: rk3326JlcpcbFanoutPhaseIndex,
     direction: "top_center",
     target: "dsi",
     connections: [
@@ -136,18 +135,16 @@ const emmcGroundBalls = [
 
 const emmcVccBalls = ["E6", "F5", "J10", "K9"] as const
 const emmcVccqBalls = ["C6", "M4", "N4", "P3", "P5"] as const
-const dsiBreakoutXBySignal = {
-  D0N: -4.250055,
-  D0P: -3.749929,
-  D1N: -2.749931,
-  D1P: -2.250059,
-  D2N: -1.250061,
-  D2P: -0.749935,
-  D3N: 0.250063,
-  D3P: 0.749935,
-  CLKN: 1.749933,
-  CLKP: 2.249805,
-} as const
+const emmcPeripheralFanoutDirections = {
+  "emmc-data": "top_center",
+  "emmc-control": "bottom_center",
+} as const satisfies Record<string, BusFanoutDirection>
+const usbPeripheralFanoutDirections = {
+  "usb-otg": "top_center",
+} as const satisfies Record<string, BusFanoutDirection>
+const dsiPeripheralFanoutDirections = {
+  "mipi-dsi": "bottom_center",
+} as const satisfies Record<string, BusFanoutDirection>
 const dsiGroundPins = [
   "pin1",
   "pin4",
@@ -176,23 +173,6 @@ const getSignalTraceName = (
   busId: (typeof signalBuses)[number]["id"],
   signal: string,
 ) => `JLCPCB_${busId.replace(/-/g, "_").toUpperCase()}_${signal}`
-
-const getTargetBreakoutPortName = (signal: string) => `FANOUT_${signal}`
-
-type SignalBusConnection = (typeof signalBuses)[number]["connections"][number]
-
-const getSignalConnectionsForTarget = (
-  target: (typeof signalBuses)[number]["target"],
-): SignalBusConnection[] =>
-  signalBuses
-    .filter((bus) => bus.target === target)
-    .flatMap((bus) => [...bus.connections] as SignalBusConnection[])
-
-const getEvenlySpacedCoordinate = (
-  index: number,
-  count: number,
-  span: number,
-) => ((index + 1) * span) / (count + 1) - span / 2
 
 const getRK3326BallPosition = (ball: string) => {
   const match = ball.match(/^([A-Z]+)(\d+)$/)
@@ -251,8 +231,14 @@ export const RK3326JlcpcbBreakout = ({
     RK3326_INITIAL_FANOUT_BUS_IDS,
   )
   const targetBreakoutNames = {
+    emmc: `${emmcName}_FANOUT`,
     usb: `${usbName}_FANOUT`,
     dsi: `${dsiName}_FANOUT`,
+  } as const
+  const targetComponentNames = {
+    emmc: emmcName,
+    usb: usbName,
+    dsi: dsiName,
   } as const
   const fanoutDirections: Record<string, BusFanoutDirection> =
     Object.fromEntries([
@@ -276,19 +262,19 @@ export const RK3326JlcpcbBreakout = ({
   } = RK3326_JLCPCB_BREAKOUT_GEOMETRY
 
   return (
-    <breakout
+    <group
       {...props}
       name={name}
       width={widthMm}
       height={heightMm}
       padding={paddingMm}
-      fanoutBoundaryPadding={fanoutBoundaryPaddingMm}
-      autorouter="default"
-      {...RK3326_BREAKOUT_RULES}
     >
-      <autoroutingphase
-        phaseIndex={rk3326JlcpcbFanoutPhaseIndex}
-        autorouter="fanout"
+      <breakout
+        name={`${chipName}_FANOUT`}
+        width={fanoutBoundarySizeMm}
+        height={fanoutBoundarySizeMm}
+        padding={fanoutBoundaryPaddingMm}
+        fanoutBoundaryPadding={fanoutBoundaryPaddingMm}
         busFanoutDirections={fanoutDirections}
         fanoutRoutingLayers={[...signalFanoutLayers]}
         fanoutPourNetMap={{
@@ -299,84 +285,151 @@ export const RK3326JlcpcbBreakout = ({
             "EMMC_VCCQ",
           ],
         }}
-      />
+        {...RK3326_BREAKOUT_RULES}
+      >
+        <pcbnoterect
+          width={fanoutBoundarySizeMm}
+          height={fanoutBoundarySizeMm}
+          strokeWidth={0.25}
+          isStrokeDashed
+          color="#f97316"
+        />
 
-      <pcbnoterect
-        width={fanoutBoundarySizeMm}
-        height={fanoutBoundarySizeMm}
-        strokeWidth={0.25}
-        isStrokeDashed
-        color="#f97316"
-      />
+        <RK3326 name={chipName} pcbX={0} pcbY={0} />
+        {planeFanoutConnections.map((connection) => {
+          const isDirectPlaneDrop = directRkPlaneDropBalls.has(connection.ball)
+          const position = isDirectPlaneDrop
+            ? getRK3326BallPosition(connection.ball)
+            : undefined
+          return (
+            <trace
+              key={connection.traceName}
+              name={connection.traceName}
+              from={`.${chipName} > .${connection.ball}`}
+              to={`net.${connection.netName}`}
+              {...(isDirectPlaneDrop
+                ? {
+                    pcbPathRelativeTo: `.${chipName} > .${connection.ball}`,
+                    pcbPath: [
+                      {
+                        ...position!,
+                        via: true,
+                        fromLayer: "top" as const,
+                        toLayer: connection.layer,
+                      },
+                    ],
+                  }
+                : {})}
+            />
+          )
+        })}
+      </breakout>
 
-      <RK3326 name={chipName} pcbX={0} pcbY={0} />
-      <KLM8G1GETF_B041
-        name={emmcName}
-        noSchematicRepresentation
-        includeSignalMicrovias
+      {signalBuses.flatMap((bus) =>
+        bus.connections.map((connection) => {
+          const traceName = getSignalTraceName(bus.id, connection.signal)
+          const targetSelector = `.${targetComponentNames[bus.target]} > .${connection.targetPin}`
+          return (
+            <trace
+              key={traceName}
+              name={traceName}
+              from={`.${chipName} > .${connection.rkBall}`}
+              to={targetSelector}
+            />
+          )
+        }),
+      )}
+
+      {signalBuses.map((bus) => (
+        <Fragment key={bus.id}>
+          <bus
+            name={bus.id}
+            connections={bus.connections.map((connection) =>
+              getSignalTraceName(bus.id, connection.signal),
+            )}
+          />
+        </Fragment>
+      ))}
+
+      <breakout
+        name={targetBreakoutNames.emmc}
         pcbX={17}
         pcbY={-4}
-      />
-      {emmcGroundBalls.map((ball) => {
-        const position = getKLM8G1GETF_B041BallPosition(ball)
-        return (
-          <trace
-            key={`EMMC_GND_${ball}`}
-            name={`EMMC_GND_${ball}`}
-            from={`.${emmcName} > .${ball}`}
-            to="net.GND"
-            pcbPathRelativeTo={`.${emmcName} > .${ball}`}
-            pcbPath={[
-              {
-                ...position,
-                via: true,
-                fromLayer: "top",
-                toLayer: RK3326_GROUND_PLANE_LAYER,
-              },
-            ]}
-          />
-        )
-      })}
-      {emmcVccBalls.map((ball) => {
-        const position = getKLM8G1GETF_B041BallPosition(ball)
-        return (
-          <trace
-            key={`EMMC_VCC_${ball}`}
-            name={`EMMC_VCC_${ball}`}
-            from={`.${emmcName} > .${ball}`}
-            to="net.EMMC_VCC"
-            pcbPathRelativeTo={`.${emmcName} > .${ball}`}
-            pcbPath={[
-              {
-                ...position,
-                via: true,
-                fromLayer: "top",
-                toLayer: RK3326_POWER_PLANE_LAYER,
-              },
-            ]}
-          />
-        )
-      })}
-      {emmcVccqBalls.map((ball) => {
-        const position = getKLM8G1GETF_B041BallPosition(ball)
-        return (
-          <trace
-            key={`EMMC_VCCQ_${ball}`}
-            name={`EMMC_VCCQ_${ball}`}
-            from={`.${emmcName} > .${ball}`}
-            to="net.EMMC_VCCQ"
-            pcbPathRelativeTo={`.${emmcName} > .${ball}`}
-            pcbPath={[
-              {
-                ...position,
-                via: true,
-                fromLayer: "top",
-                toLayer: RK3326_POWER_PLANE_LAYER,
-              },
-            ]}
-          />
-        )
-      })}
+        width={peripheralBreakoutGeometry.emmc.width}
+        height={peripheralBreakoutGeometry.emmc.height}
+        padding={peripheralFanoutPaddingMm}
+        fanoutBoundaryPadding={peripheralFanoutPaddingMm}
+        exposedNets={["GND", "EMMC_VCC", "EMMC_VCCQ"]}
+        busFanoutDirections={emmcPeripheralFanoutDirections}
+        {...RK3326_BREAKOUT_RULES}
+      >
+        <KLM8G1GETF_B041
+          name={emmcName}
+          noSchematicRepresentation
+          pcbX={0}
+          pcbY={0}
+        />
+        {emmcGroundBalls.map((ball) => {
+          const position = getKLM8G1GETF_B041BallPosition(ball)
+          return (
+            <trace
+              key={`EMMC_GND_${ball}`}
+              name={`EMMC_GND_${ball}`}
+              from={`.${emmcName} > .${ball}`}
+              to="net.GND"
+              pcbPathRelativeTo={`.${emmcName} > .${ball}`}
+              pcbPath={[
+                {
+                  ...position,
+                  via: true,
+                  fromLayer: "top",
+                  toLayer: RK3326_GROUND_PLANE_LAYER,
+                },
+              ]}
+            />
+          )
+        })}
+        {emmcVccBalls.map((ball) => {
+          const position = getKLM8G1GETF_B041BallPosition(ball)
+          return (
+            <trace
+              key={`EMMC_VCC_${ball}`}
+              name={`EMMC_VCC_${ball}`}
+              from={`.${emmcName} > .${ball}`}
+              to="net.EMMC_VCC"
+              pcbPathRelativeTo={`.${emmcName} > .${ball}`}
+              pcbPath={[
+                {
+                  ...position,
+                  via: true,
+                  fromLayer: "top",
+                  toLayer: RK3326_POWER_PLANE_LAYER,
+                },
+              ]}
+            />
+          )
+        })}
+        {emmcVccqBalls.map((ball) => {
+          const position = getKLM8G1GETF_B041BallPosition(ball)
+          return (
+            <trace
+              key={`EMMC_VCCQ_${ball}`}
+              name={`EMMC_VCCQ_${ball}`}
+              from={`.${emmcName} > .${ball}`}
+              to="net.EMMC_VCCQ"
+              pcbPathRelativeTo={`.${emmcName} > .${ball}`}
+              pcbPath={[
+                {
+                  ...position,
+                  via: true,
+                  fromLayer: "top",
+                  toLayer: RK3326_POWER_PLANE_LAYER,
+                },
+              ]}
+            />
+          )
+        })}
+      </breakout>
       <breakout
         name={targetBreakoutNames.usb}
         pcbX={0}
@@ -384,8 +437,9 @@ export const RK3326JlcpcbBreakout = ({
         width={peripheralBreakoutGeometry.usb.width}
         height={peripheralBreakoutGeometry.usb.height}
         padding={peripheralFanoutPaddingMm}
+        fanoutBoundaryPadding={peripheralFanoutPaddingMm}
         exposedNets={["GND"]}
-        autorouter="default"
+        busFanoutDirections={usbPeripheralFanoutDirections}
       >
         <A_10118194_0001LF
           name={usbName}
@@ -394,35 +448,6 @@ export const RK3326JlcpcbBreakout = ({
           pcbY={0}
           pcbRotation={0}
         />
-        {signalBuses
-          .filter((bus) => bus.target === "usb")
-          .flatMap((bus) =>
-            bus.connections.map((connection) => (
-              <Fragment key={`${bus.id}-${connection.signal}`}>
-                <port
-                  name={getTargetBreakoutPortName(connection.signal)}
-                  direction="up"
-                  connectsTo={`.${usbName} > .${connection.targetPin}`}
-                />
-              </Fragment>
-            )),
-          )}
-        {getSignalConnectionsForTarget("usb").map(
-          (connection, index, connections) => (
-            <Fragment key={`USB_BREAKOUT_${connection.signal}`}>
-              <breakoutpoint
-                connection={`.${getTargetBreakoutPortName(connection.signal)}`}
-                pcbX={getEvenlySpacedCoordinate(
-                  index,
-                  connections.length,
-                  peripheralBreakoutGeometry.usb.width -
-                    2 * peripheralFanoutPaddingMm,
-                )}
-                pcbY={peripheralBreakoutGeometry.usb.height / 2 - 0.0001}
-              />
-            </Fragment>
-          ),
-        )}
         <trace
           name="USB_GND"
           from={`.${usbName} > .GND`}
@@ -446,8 +471,9 @@ export const RK3326JlcpcbBreakout = ({
         width={peripheralBreakoutGeometry.dsi.width}
         height={peripheralBreakoutGeometry.dsi.height}
         padding={peripheralFanoutPaddingMm}
+        fanoutBoundaryPadding={peripheralFanoutPaddingMm}
         exposedNets={["GND"]}
-        autorouter="default"
+        busFanoutDirections={dsiPeripheralFanoutDirections}
       >
         <KH_FG0_5_H2_0_20PIN
           name={dsiName}
@@ -456,32 +482,6 @@ export const RK3326JlcpcbBreakout = ({
           pcbY={0}
           pcbRotation={180}
         />
-        {signalBuses
-          .filter((bus) => bus.target === "dsi")
-          .flatMap((bus) =>
-            bus.connections.map((connection) => (
-              <Fragment key={`${bus.id}-${connection.signal}`}>
-                <port
-                  name={getTargetBreakoutPortName(connection.signal)}
-                  direction="down"
-                  connectsTo={`.${dsiName} > .${connection.targetPin}`}
-                />
-              </Fragment>
-            )),
-          )}
-        {getSignalConnectionsForTarget("dsi").map((connection) => (
-          <Fragment key={`DSI_BREAKOUT_${connection.signal}`}>
-            <breakoutpoint
-              connection={`.${getTargetBreakoutPortName(connection.signal)}`}
-              pcbX={
-                dsiBreakoutXBySignal[
-                  connection.signal as keyof typeof dsiBreakoutXBySignal
-                ]
-              }
-              pcbY={-peripheralBreakoutGeometry.dsi.height / 2 + 0.0001}
-            />
-          </Fragment>
-        ))}
         {dsiGroundPins.map((pin) => (
           <trace
             key={`MIPI_DSI_GND_${pin}`}
@@ -501,63 +501,6 @@ export const RK3326JlcpcbBreakout = ({
           />
         ))}
       </breakout>
-      {planeFanoutConnections.map((connection) => {
-        const isDirectPlaneDrop = directRkPlaneDropBalls.has(connection.ball)
-        const position = isDirectPlaneDrop
-          ? getRK3326BallPosition(connection.ball)
-          : undefined
-        return (
-          <trace
-            key={connection.traceName}
-            name={connection.traceName}
-            from={`.${chipName} > .${connection.ball}`}
-            to={`net.${connection.netName}`}
-            {...(isDirectPlaneDrop
-              ? {
-                  pcbPathRelativeTo: `.${chipName} > .${connection.ball}`,
-                  pcbPath: [
-                    {
-                      ...position!,
-                      via: true,
-                      fromLayer: "top" as const,
-                      toLayer: connection.layer,
-                    },
-                  ],
-                }
-              : { routingPhaseIndex: rk3326JlcpcbFanoutPhaseIndex })}
-          />
-        )
-      })}
-
-      {signalBuses.flatMap((bus) =>
-        bus.connections.map((connection) => {
-          const traceName = getSignalTraceName(bus.id, connection.signal)
-          const targetSelector =
-            bus.target === "emmc"
-              ? `.${emmcName} > .${connection.targetPin}`
-              : `.${targetBreakoutNames[bus.target]} > .${getTargetBreakoutPortName(connection.signal)}`
-          return (
-            <trace
-              key={traceName}
-              name={traceName}
-              from={`.${chipName} > .${connection.rkBall}`}
-              to={targetSelector}
-            />
-          )
-        }),
-      )}
-
-      {signalBuses.map((bus) => (
-        <Fragment key={bus.id}>
-          <bus
-            name={bus.id}
-            connections={bus.connections.map((connection) =>
-              getSignalTraceName(bus.id, connection.signal),
-            )}
-            routingPhaseIndex={bus.phaseIndex}
-          />
-        </Fragment>
-      ))}
-    </breakout>
+    </group>
   )
 }

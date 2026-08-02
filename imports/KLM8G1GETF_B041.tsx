@@ -279,1225 +279,1072 @@ export const KLM8G1GETF_B041 = ({
             portHints={["pin1"]}
             pcbX="-3.250057mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin2"]}
             pcbX="-2.749931mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin3"]}
             pcbX="-2.250059mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin4"]}
             pcbX="-1.749933mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin5"]}
             pcbX="-1.250061mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin6"]}
             pcbX="-0.749935mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin7"]}
             pcbX="-0.250063mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin8"]}
             pcbX="0.250063mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin9"]}
             pcbX="0.749935mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin10"]}
             pcbX="1.250061mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin11"]}
             pcbX="1.749933mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin12"]}
             pcbX="2.250059mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin13"]}
             pcbX="2.749931mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin14"]}
             pcbX="3.250057mm"
             pcbY="3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin15"]}
             pcbX="-3.250057mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin16"]}
             pcbX="-2.749931mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin17"]}
             pcbX="-2.250059mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin18"]}
             pcbX="-1.749933mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin19"]}
             pcbX="-1.250061mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin20"]}
             pcbX="-0.749935mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin21"]}
             pcbX="-0.250063mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin22"]}
             pcbX="0.250063mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin23"]}
             pcbX="0.749935mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin24"]}
             pcbX="1.250061mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin25"]}
             pcbX="1.749933mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin26"]}
             pcbX="2.250059mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin27"]}
             pcbX="2.749931mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin28"]}
             pcbX="3.250057mm"
             pcbY="2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin29"]}
             pcbX="-3.250057mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin30"]}
             pcbX="-2.749931mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin31"]}
             pcbX="-2.250059mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin32"]}
             pcbX="-1.749933mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin33"]}
             pcbX="-1.250061mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin34"]}
             pcbX="-0.749935mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin35"]}
             pcbX="-0.250063mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin36"]}
             pcbX="0.250063mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin37"]}
             pcbX="0.749935mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin38"]}
             pcbX="1.250061mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin39"]}
             pcbX="1.749933mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin40"]}
             pcbX="2.250059mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin41"]}
             pcbX="2.749931mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin42"]}
             pcbX="3.250057mm"
             pcbY="2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin43"]}
             pcbX="-3.250057mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin44"]}
             pcbX="-2.749931mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin45"]}
             pcbX="-2.250059mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin46"]}
             pcbX="-1.749933mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin47"]}
             pcbX="2.250059mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin48"]}
             pcbX="2.749931mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin49"]}
             pcbX="3.250057mm"
             pcbY="1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin50"]}
             pcbX="-3.250057mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin51"]}
             pcbX="-2.749931mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin52"]}
             pcbX="-2.250059mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin53"]}
             pcbX="-1.250061mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin54"]}
             pcbX="-0.749935mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin55"]}
             pcbX="-0.250063mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin56"]}
             pcbX="0.250063mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin57"]}
             pcbX="0.749935mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin58"]}
             pcbX="1.250061mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin59"]}
             pcbX="2.250059mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin60"]}
             pcbX="2.749931mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin61"]}
             pcbX="3.250057mm"
             pcbY="1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin62"]}
             pcbX="-3.250057mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin63"]}
             pcbX="-2.749931mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin64"]}
             pcbX="-2.250059mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin65"]}
             pcbX="-1.250061mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin66"]}
             pcbX="1.250061mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin67"]}
             pcbX="2.250059mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin68"]}
             pcbX="2.749931mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin69"]}
             pcbX="3.250057mm"
             pcbY="0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin70"]}
             pcbX="-3.250057mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin71"]}
             pcbX="-2.749931mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin72"]}
             pcbX="-2.250059mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin73"]}
             pcbX="-1.250061mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin74"]}
             pcbX="1.250061mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin75"]}
             pcbX="2.250059mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin76"]}
             pcbX="2.749931mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin77"]}
             pcbX="3.250057mm"
             pcbY="0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin78"]}
             pcbX="-3.250057mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin79"]}
             pcbX="-2.749931mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin80"]}
             pcbX="-2.250059mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin81"]}
             pcbX="-1.250061mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin82"]}
             pcbX="1.250061mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin83"]}
             pcbX="2.250059mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin84"]}
             pcbX="2.749931mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin85"]}
             pcbX="3.250057mm"
             pcbY="-0.250063mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin86"]}
             pcbX="-3.250057mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin87"]}
             pcbX="-2.749931mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin88"]}
             pcbX="-2.250059mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin89"]}
             pcbX="-1.250061mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin90"]}
             pcbX="1.250061mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin91"]}
             pcbX="2.250059mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin92"]}
             pcbX="2.749931mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin93"]}
             pcbX="3.250057mm"
             pcbY="-0.749935mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin94"]}
             pcbX="-3.250057mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin95"]}
             pcbX="-2.749931mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin96"]}
             pcbX="-2.250059mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin97"]}
             pcbX="-1.250061mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin98"]}
             pcbX="-0.749935mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin99"]}
             pcbX="-0.250063mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin100"]}
             pcbX="0.250063mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin101"]}
             pcbX="0.749935mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin102"]}
             pcbX="1.250061mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin103"]}
             pcbX="2.250059mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin104"]}
             pcbX="2.749931mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin105"]}
             pcbX="3.250057mm"
             pcbY="-1.250061mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin106"]}
             pcbX="-3.250057mm"
             pcbY="-1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin107"]}
             pcbX="-2.749931mm"
             pcbY="-1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin108"]}
             pcbX="-2.250059mm"
             pcbY="-1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin109"]}
             pcbX="2.250059mm"
             pcbY="-1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin110"]}
             pcbX="2.749931mm"
             pcbY="-1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin111"]}
             pcbX="3.250057mm"
             pcbY="-1.749933mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin112"]}
             pcbX="-3.250057mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin113"]}
             pcbX="-2.749931mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin114"]}
             pcbX="-2.250059mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin115"]}
             pcbX="-1.749933mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin116"]}
             pcbX="-1.250061mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin117"]}
             pcbX="-0.749935mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin118"]}
             pcbX="-0.250063mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin119"]}
             pcbX="0.250063mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin120"]}
             pcbX="0.749935mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin121"]}
             pcbX="1.250061mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin122"]}
             pcbX="1.749933mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin123"]}
             pcbX="2.250059mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin124"]}
             pcbX="2.749931mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin125"]}
             pcbX="3.250057mm"
             pcbY="-2.250059mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin126"]}
             pcbX="-3.250057mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin127"]}
             pcbX="-2.749931mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin128"]}
             pcbX="-2.250059mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin129"]}
             pcbX="-1.749933mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin130"]}
             pcbX="-1.250061mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin131"]}
             pcbX="-0.749935mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin132"]}
             pcbX="-0.250063mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin133"]}
             pcbX="0.250063mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin134"]}
             pcbX="0.749935mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin135"]}
             pcbX="1.250061mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin136"]}
             pcbX="1.749933mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin137"]}
             pcbX="2.250059mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin138"]}
             pcbX="2.749931mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin139"]}
             pcbX="3.250057mm"
             pcbY="-2.749931mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin140"]}
             pcbX="-3.250057mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin141"]}
             pcbX="-2.749931mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin142"]}
             pcbX="-2.250059mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin143"]}
             pcbX="-1.749933mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin144"]}
             pcbX="-1.250061mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin145"]}
             pcbX="-0.749935mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin146"]}
             pcbX="-0.250063mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin147"]}
             pcbX="0.250063mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin148"]}
             pcbX="0.749935mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin149"]}
             pcbX="1.250061mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin150"]}
             pcbX="1.749933mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin151"]}
             pcbX="2.250059mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin152"]}
             pcbX="2.749931mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           <smtpad
             portHints={["pin153"]}
             pcbX="3.250057mm"
             pcbY="-3.250057mm"
-            width="0.2500122mm"
-            height="0.2500122mm"
-            shape="rect"
+            shape="circle"
+            radius="0.1250061mm"
           />
           {includeSupplyMicrovias &&
             supplyMicrovias.map(({ ball, toLayer }) => {
