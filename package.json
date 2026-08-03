@@ -22,7 +22,10 @@
   "devDependencies": {
     "@types/bun": "^1.3.14",
     "@types/react": "^19.2.17",
-    "tscircuit": "0.0.2200",
+    "tscircuit": "0.0.2207",
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@tscircuit/bus-tracer": "github:tscircuit/bus-tracer#ffd1bb8"
   }
 }

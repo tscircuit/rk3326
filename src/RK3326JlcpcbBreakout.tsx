@@ -4,6 +4,7 @@ import { A_10118194_0001LF } from "../imports/A_10118194_0001LF"
 import { KH_FG0_5_H2_0_20PIN } from "../imports/KH_FG0_5_H2_0_20PIN"
 import { KLM8G1GETF_B041 } from "../imports/KLM8G1GETF_B041"
 import { RK3326, RK3326_PACKAGE } from "./RK3326"
+import { createRk3326BusTracerAutorouter } from "./createBusTracerAutorouter"
 import {
   getRK3326PlaneFanoutConnections,
   RK3326_BREAKOUT_RULES,
@@ -63,6 +64,7 @@ export const RK3326_JLCPCB_PARTS = {
 const signalBuses = [
   {
     id: "emmc-data",
+    routingPhaseIndex: 1,
     direction: "center_right",
     target: "emmc",
     connections: [
@@ -78,6 +80,7 @@ const signalBuses = [
   },
   {
     id: "emmc-control",
+    routingPhaseIndex: 0,
     direction: "center_right",
     target: "emmc",
     connections: [
@@ -88,6 +91,7 @@ const signalBuses = [
   },
   {
     id: "usb-otg",
+    routingPhaseIndex: 2,
     direction: "center_right",
     target: "usb",
     connections: [
@@ -99,6 +103,7 @@ const signalBuses = [
   },
   {
     id: "mipi-dsi",
+    routingPhaseIndex: 3,
     direction: "top_center",
     target: "dsi",
     connections: [
@@ -150,15 +155,6 @@ const dsiGroundPins = [
   "pin13",
   "pin16",
 ] as const
-const directRkPlaneDropBalls = new Set([
-  "A21",
-  "AA21",
-  "J18",
-  "L11",
-  "W11",
-  "W13",
-])
-
 const directionToAnchor = {
   left: "center_left",
   right: "center_right",
@@ -170,21 +166,6 @@ const getSignalTraceName = (
   busId: (typeof signalBuses)[number]["id"],
   signal: string,
 ) => `JLCPCB_${busId.replace(/-/g, "_").toUpperCase()}_${signal}`
-
-const getRK3326BallPosition = (ball: string) => {
-  const match = ball.match(/^([A-Z]+)(\d+)$/)
-  if (!match) throw new Error(`Invalid RK3326 ball name: ${ball}`)
-
-  const rowIndex = RK3326_PACKAGE.rowNames.indexOf(
-    match[1] as (typeof RK3326_PACKAGE.rowNames)[number],
-  )
-  if (rowIndex < 0) throw new Error(`Unknown RK3326 ball row: ${match[1]}`)
-
-  return {
-    x: (Number(match[2]) - 11) * RK3326_PACKAGE.pitchMm,
-    y: (10 - rowIndex) * RK3326_PACKAGE.pitchMm,
-  }
-}
 
 type FixedBreakoutProps =
   | "children"
@@ -241,7 +222,6 @@ export const RK3326JlcpcbBreakout = ({
     Object.fromEntries([
       ...signalBuses.map((bus) => [bus.id, bus.direction] as const),
       ...planeFanoutConnections
-        .filter((connection) => !directRkPlaneDropBalls.has(connection.ball))
         .map(
           (connection) =>
             [
@@ -293,33 +273,14 @@ export const RK3326JlcpcbBreakout = ({
         />
 
         <RK3326 name={chipName} pcbX={0} pcbY={0} />
-        {planeFanoutConnections.map((connection) => {
-          const isDirectPlaneDrop = directRkPlaneDropBalls.has(connection.ball)
-          const position = isDirectPlaneDrop
-            ? getRK3326BallPosition(connection.ball)
-            : undefined
-          return (
-            <trace
-              key={connection.traceName}
-              name={connection.traceName}
-              from={`.${chipName} > .${connection.ball}`}
-              to={`net.${connection.netName}`}
-              {...(isDirectPlaneDrop
-                ? {
-                    pcbPathRelativeTo: `.${chipName} > .${connection.ball}`,
-                    pcbPath: [
-                      {
-                        ...position!,
-                        via: true,
-                        fromLayer: "top" as const,
-                        toLayer: connection.layer,
-                      },
-                    ],
-                  }
-                : {})}
-            />
-          )
-        })}
+        {planeFanoutConnections.map((connection) => (
+          <trace
+            key={connection.traceName}
+            name={connection.traceName}
+            from={`.${chipName} > .${connection.ball}`}
+            to={`net.${connection.netName}`}
+          />
+        ))}
       </breakout>
 
       {signalBuses.flatMap((bus) =>
@@ -339,11 +300,21 @@ export const RK3326JlcpcbBreakout = ({
 
       {signalBuses.map((bus) => (
         <Fragment key={bus.id}>
+          <autoroutingphase
+            name={`${bus.id}-bus-tracer`}
+            phaseIndex={bus.routingPhaseIndex}
+            autorouter={{
+              local: true,
+              groupMode: "subcircuit",
+              algorithmFn: createRk3326BusTracerAutorouter,
+            }}
+          />
           <bus
             name={bus.id}
             connections={bus.connections.map((connection) =>
               getSignalTraceName(bus.id, connection.signal),
             )}
+            routingPhaseIndex={bus.routingPhaseIndex}
           />
         </Fragment>
       ))}

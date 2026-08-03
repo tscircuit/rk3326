@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
+    "lib": ["ES2023", "DOM"],
     "module": "ESNext",
     "jsx": "react-jsx",
     "outDir": "dist",
@@ -8,7 +9,7 @@
     "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
